@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { Post } from './typeorm/entities/Post';
 import { Profile } from './typeorm/entities/Profile';
 import { User } from './typeorm/entities/User';
 import { UsersModule } from './users/users.module';
-import { ProfilesController } from './profiles/controller/profiles/profiles.controller';
 
 @Module({
   imports: [
@@ -16,12 +16,12 @@ import { ProfilesController } from './profiles/controller/profiles/profiles.cont
       username: 'testuser',
       password: 'testuser123',
       database: 'nest_mysql',
-      entities: [User, Profile],
+      entities: [User, Profile, Post],
       synchronize: true,
     }),
     UsersModule,
   ],
-  controllers: [AppController, ProfilesController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
